@@ -1,13 +1,11 @@
 <?php 
-
-
 function settings_page_html_form() { ?>
     <div class="container">
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-12 col-sm-12">
                 <h1>Налаштування плагіна Contact Form 7 Lead Generation</h1>
             </div>
-        </div> -->
+        </div>
       
         <form method="post" action="options.php">
             <?php
@@ -29,7 +27,7 @@ function cf7ld_initialize_settings() {
 
     add_settings_section(
         'cf7ld_plugin_general_settings_section',
-        'Налаштування плагіна Contact Form 7 Lead Generation',
+        'Настройка отправителя',
         'cf7ld_section_help',
         'cf7ld_plugin_settings'
     );
