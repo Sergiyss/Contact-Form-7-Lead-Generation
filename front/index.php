@@ -1,5 +1,6 @@
 <?php 
 
+
 function settings_page_html_form() { ?>
     <div class="container">
         <div class="row">
@@ -16,6 +17,7 @@ function settings_page_html_form() { ?>
             ?>
         </form>
     </div>
+
 <?php } ?>
 
 <?php   
@@ -25,30 +27,39 @@ add_action('admin_init', 'my_plugin_initialize_settings');
 
 function my_plugin_initialize_settings() {
 
-        add_settings_section(
-            'my_plugin_general_settings_section',
-            'Настройка отправителя',
-            'my_plugin_general_settings_section_callback',
-            'my_plugin_settings'
-        );
+	add_settings_section(
+		'my_plugin_general_settings_section',
+		'Настройка отправителя',
+		'my_plugin_general_settings_section_callback',
+		'my_plugin_settings'
+	);
 
-        add_settings_field(
-            'np_settings_apiKey',
-            'ApiKey',
-            'np_settings_apiKey_form',
-            'my_plugin_settings',
-            'my_plugin_general_settings_section'
-        );
-        
-        register_setting(
-            'my_plugin_settings',
-            'np_settings_apiKey',
-        );
+	 add_settings_field(
+		 'ifteam_apiKey',
+		 'ApiKey',
+		 'np_settings_apiKey_form',
+		 'my_plugin_settings',
+		 'my_plugin_general_settings_section'
+    );
 
-        function np_settings_apiKey_form() {
-            $form = get_option('np_settings_apiKey');
-            ?>
-            <input type="string" name="ifteam_apiKey" value="<?php echo esc_attr($form); ?>" />
-        <?php } ?>
+	register_setting(
+		'my_plugin_settings',
+		'ifteam_apiKey',
+	);
+
+	function np_settings_apiKey_form() {
+		$form = get_option('ifteam_apiKey');
+	?>
+	<input type="string" name="ifteam_apiKey" value="<?php echo esc_attr($form); ?>" />
+	<?php } ?>
 
 <?php } ?>
+
+<?php
+
+// Функция обратного вызова для секции "General Settings"
+function my_plugin_general_settings_section_callback() {
+    echo 'Ключ для інтеграції з ifteam ви можете отримати за посиланням ....';
+}
+
+?>
