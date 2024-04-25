@@ -18,30 +18,28 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-include 'front/index.php'; 
-
-
-function cf7_lg_scripts() {
-    wp_enqueue_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.3', true);
-    wp_enqueue_script('main', plugin_dir_url( __FILE__ ) . 'assets/js/main.js', array('jquery'), '1.0', true);
-    wp_localize_script( 'main', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ))); 
-}
-
-add_action('wp_enqueue_scripts', 'cf7_lg_scripts');
+include 'front/index.php';
+include_once(get_template_directory() . '/includes/admin/new_tab_cf7lg.php');
+include_once(get_template_directory() . '/includes/database/database-cf7lg.php');
 
 
 
-function cf7_lg_style() {
+$database = new DataBaseCf7lg();
 
-    wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', array(), '5.3.3', 'all' );
-    wp_enqueue_style( 'my-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css', array(), '1.0', 'all' );
-}
-add_action( 'wp_enqueue_scripts', 'cf7_lg_style' );
 
+if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
+    wp_enqueue_scripts('prefix_bootstrap');
+    wp_register_script('prefix_bootstrap', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
+
+    wp_enqueue_style('prefix_bootstrap');
+    wp_register_style('prefix_bootstrap', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
+endif;
 /**
  * Активация плагина
  * */
-function  activate_pulugin(){}
+function  activate_pulugin(){
+    $database->createTable();
+}
 register_activation_hook(__FILE__, 'activate_pulugin');
 
 
