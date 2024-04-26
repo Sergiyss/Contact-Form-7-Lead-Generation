@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class DataBaseCf7lg{
 
@@ -38,17 +38,47 @@ class DataBaseCf7lg{
 	 * */
 	function insert_data_base($id_form_wpcf7, $json_object){
 		global $wpdb;
+
+		$table_name = $this->getNameTable($wpdb);
+
+		// Проверяем, существует ли запись с данным wpcf7_id
+		$existing_record = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE wpcf7_id = %s", $id_form_wpcf7));
 		
-		$history_data = array(
-			'wpcf7_id' => $id_form_wpcf7,
-			'attribytes_cf7lg' => $json_object,
-		);
-
-
-		$table_name = $table_name = getNameTable($wpdb);
-
-		$wpdb->insert($table_name, $history_data);
+		$json_object_utf8 = utf8_encode($json_object);
+		
+		// Если запись существует, обновляем attribytes_cf7lg
+		if ($existing_record) {
+			$wpdb->update(
+				$table_name,
+				array('attribytes_cf7lg' => $json_object_utf8),
+				array('wpcf7_id' => $id_form_wpcf7)
+			);
+		} else {
+			// Если запись не существует, добавляем новую запись
+			$history_data = array(
+				'wpcf7_id' => $id_form_wpcf7,
+				'attribytes_cf7lg' => $json_object_utf8,
+			);
+			$wpdb->insert($table_name, $history_data);
+		}
 	}
+	
+	
+	function get_data_by_wpcf7_id($wpcf7_id){
+		global $wpdb;
+
+		$table_name = $this->getNameTable($wpdb);
+
+		// Получаем данные из таблицы по заданному wpcf7_id
+		$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE wpcf7_id = %s", $wpcf7_id), ARRAY_A);
+		
+		$data_array = json_decode($result["attribytes_cf7lg"], true);
+
+		// Выводим данные
+		return $data_array;
+		
+	}
+	
 }
 
 ?>
