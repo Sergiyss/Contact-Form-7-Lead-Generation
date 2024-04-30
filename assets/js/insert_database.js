@@ -1,22 +1,23 @@
 function insetDataBase() {
 
-    var name1 = document.getElementById('name_1').value;
-    var name2 = document.getElementById('name_2').value;
-    var name3 = document.getElementById('name_3').value;
-    var name4 = document.getElementById('name_4').value;
-    var name5 = document.getElementById('name_5').value;
-    var cf7lgId = document.getElementById('cf7lg_id').value;
-
-
-
     let form_data = new FormData();
     form_data.append('action', 'update_wpcf7_form');
-    form_data.append('params1', name1);
-    form_data.append('params2', name2);
-    form_data.append('params3', name3);
-    form_data.append('params4', name4);
-    form_data.append('params5', name5);
-    form_data.append('formId', cf7lgId);
+    form_data.append('title', document.getElementById('title_cf7lg').value);
+    form_data.append('responsible', document.getElementById('responsible_cf7lg').value);
+    form_data.append('observers', getSelectedValuesAsString('observers_cf7lg'));
+    form_data.append('expected_budget', document.getElementById('expected_budget_cf7lg').value);
+    form_data.append('deal_currency', document.getElementById('deal_currency_cf7lg').value);
+    form_data.append('source', document.getElementById('source_cf7lg').value);
+    form_data.append('status', document.getElementById('status_cf7lg').value);
+    form_data.append('service', document.getElementById('service_cf7lg').value);
+    form_data.append('description_lead', document.getElementById('description_lead_cf7lg').value);
+    form_data.append('file', document.getElementById('file_cf7lg').value);
+    form_data.append('name', document.getElementById('name_cf7lg').value);
+    form_data.append('country', document.getElementById('country_cf7lg').value);
+    form_data.append('email', document.getElementById('email_cf7lg').value);
+    form_data.append('phone', document.getElementById('phone_cf7lg').value);
+    form_data.append('description', document.getElementById('description_cf7lg').value);
+    form_data.append('formId', document.getElementById('cf7lg_id').value);
     
 
 
@@ -38,4 +39,14 @@ function insetDataBase() {
             displayToast('Request failed', 'Bottom Left', types[5])
         };
         xhr.send(form_data);
+}
+
+
+function getSelectedValuesAsString(selectId) {
+    var select = document.getElementById(selectId);
+    var selectedValues = [];
+    for (var i = 0; i < select.selectedOptions.length; i++) {
+        selectedValues.push(select.selectedOptions[i].value);
+    }
+    return selectedValues.join(', ');
 }

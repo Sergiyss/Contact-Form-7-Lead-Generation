@@ -17,6 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit();
 }
 
+function ap_action_init(){
+// Локализация
+    load_plugin_textdomain('cf7lg', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+}
+
+// Add actions
+add_action('init', 'ap_action_init');
+
+
 include 'front/index.php';
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/Lead-Generation-Tab_cf7lg.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php');
@@ -25,15 +34,17 @@ include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php'
 if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
 
     wp_enqueue_script('bootstrap_script', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
+ 	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js');
     wp_enqueue_script('showdown_script', '//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', array(), false);;
     wp_enqueue_script('bulma_script', '//unpkg.com/bulma-toast', array(), false);
 
     // Регистрация и подключение стилей
     wp_enqueue_style('bootstrap_style', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
-    wp_enqueue_style('bulma_style', '//cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css', array(), false);
-    wp_enqueue_style('animate_style', '//cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css', array(), false);
+  	wp_enqueue_style('bootstrap_select_style', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css');
+    wp_enqueue_style('bulma_style',     '//cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css', array(), false);
+    wp_enqueue_style('animate_style',   '//cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css', array(), false);
+    wp_enqueue_style('main_style',      plugin_dir_url(__FILE__). 'assets/css/style.css', array(), false);
 endif;
-
 
 if (isset($_GET['page']) && $_GET['page'] === 'wpcf7' && $_GET['active-tab'] === '4'):
 
@@ -43,15 +54,14 @@ if (isset($_GET['page']) && $_GET['page'] === 'wpcf7' && $_GET['active-tab'] ===
     .postbox-container p.submit input.button-primary {display: none !important;}
 </style
 
-<?php ?>
-
-<?
+<?php 
 
 endif;
 
 //Глобальные стили
 wp_enqueue_script('main_script_cf7lg', plugin_dir_url( __FILE__ ) . '/assets/js/main.js', array('jquery'), '1.0', true);
 wp_enqueue_script('insert_database', plugin_dir_url( __FILE__ ) . '/assets/js/insert_database.js', array('jquery'), '1.0', true);
+wp_enqueue_script('utm_tags', plugin_dir_url( __FILE__ ) . '/assets/js/utm_tags.js', array('jquery'), '1.0', true);
 wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
 
@@ -101,7 +111,7 @@ function  store_cf7_data_in_local_storage ( $contact_form )   {
         // Сохраняем данные в локальном хранилище 
         $json_data = json_encode( $posted_data, JSON_UNESCAPED_UNICODE );
         
-        get_information_the_form_cf7lg($form_id);
+        get_information_the_form_cf7lg($form_id, $json_data, $posted_data);
     } 
 }
 
@@ -109,9 +119,7 @@ function  store_cf7_data_in_local_storage ( $contact_form )   {
 
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/ajax-scripts/update_wpcf7_form.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/functions.php');
-
-
-
+include_once(plugin_dir_path(__FILE__) . '/includes/admin/Connects-wiht-ifteam.php');
 
 
 ?>

@@ -3,7 +3,7 @@ function settings_page_html_form() { ?>
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-12">
-                <h1>Налаштування плагіна Contact Form 7 Lead Generation</h1>
+                <h1><?php __('Setting up the Contact Form 7 Lead Generation plugin', 'cf7lg'); ?></h1>
             </div>
         </div>
       
