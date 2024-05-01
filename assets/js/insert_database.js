@@ -17,6 +17,13 @@ function insetDataBase() {
     form_data.append('email', document.getElementById('email_cf7lg').value);
     form_data.append('phone', document.getElementById('phone_cf7lg').value);
     form_data.append('description', document.getElementById('description_cf7lg').value);
+	form_data.append('utm_tags_checked', document.getElementById('utm_active_custom_tags_cf7lg').checked);
+	form_data.append('utm_source', document.getElementById('utm_source_cf7lg').value);
+	form_data.append('utm_medium', document.getElementById('utm_medium_cf7lg').value);
+	form_data.append('utm_campaign', document.getElementById('utm_campaign_cf7lg').value);
+	form_data.append('utm_term', document.getElementById('utm_term_cf7lg').value);
+	form_data.append('utm_content', document.getElementById('utm_content_cf7lg').value);
+	
     form_data.append('formId', document.getElementById('cf7lg_id').value);
     
 

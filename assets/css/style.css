@@ -1,21 +1,40 @@
 .col-lg-12 h3 {
-    padding-bottom: 30px;
-    padding-top: 10px;
+	padding-bottom: 30px;
+	padding-top: 10px;
 }
 label#inputGroup-sizing-default,
 span#inputGroup-sizing-default {
-    width: 18%;
+	width: 18%;
 }
 
 
 .bootstrap-select>.dropdown-toggle {
-    max-width: 600px !important;
-    min-width: 250px !important;
-    border: solid 1px #8c8f94;
-    border-radius: 0;
-    background: white;
+	max-width: 600px !important;
+	min-width: 250px !important;
+	border-radius: 0;
+	background: white;
 }
 
 .col-lg-2.save_form button {
-    width: 200px;
+	width: 200px;
+}
+
+
+
+.form-check-input:checked {
+	background-color: white !important;
+	border-color: #0d6efd;
+}
+
+
+span.required {
+	font-size: 1.4rem !important;
+	margin-left: 4px !important;
+}
+
+
+input#responsible_cf7lg:invalid,
+input#name_cf7lg:invalid,
+input#title_cf7lg:invalid {
+	border: 3px solid tomato;
 }

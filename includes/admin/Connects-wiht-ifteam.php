@@ -122,4 +122,36 @@ function leadsСurrencies(){
 	}
 }
 
+
+//Отправляю данные на сервер для создания лида.
+function createLeads($data){
+	global $BASE_URL;
+	$args = array(
+		'timeout'     => 5,
+		'redirection' => 5,
+		'httpversion' => '1.0',
+		'blocking'    => true,
+		'headers' => array(
+			'Content-Type' => 'application/json',
+			'apikey' => get_option('ifteam_apiKey'),
+		),
+		'body'    => $data,
+	);
+	return $response = wp_remote_post( $BASE_URL."integrations/leads", $args);
+	
+	// проверим правильный ли получили ответ
+	if ( is_wp_error( $response ) ){
+		echo $response->get_error_message();
+	}
+	elseif( wp_remote_retrieve_response_code( $response ) === 200 ){
+		// Все OK, делаем что нибудь с данными $request['body']
+		$body = wp_remote_retrieve_body( $response );
+		$data = json_decode( $body, true );
+
+		return $data;
+	}
+}
+
+
+
 ?>

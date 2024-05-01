@@ -1,0 +1,31 @@
+<?php 
+
+
+add_action ( 'wpcf7_mail_sent' , 'store_cf7_data_in_local_storage' ); 
+
+function  store_cf7_data_in_local_storage ( $contact_form )   { 
+    $form_id = $contact_form->id();
+	$shortcode = $contact_form->shortcode();
+    // Поиск ID формы в шорткоде с помощью регулярного выражения
+    preg_match( '/id="([^"]+)"/', $shortcode, $matches );
+	echo  $matches[1];
+    
+    // Получаем данные отправки формы 
+    $submission = WPCF7_Submission :: get_instance ();
+
+    // Убедитесь, что отправка действительна 
+    if ( $submission ) { 
+        // Получаем данные формы 
+        $posted_data = $submission -> get_posted_data (); 
+
+        // Конвертируем данные в JSON 
+        $json_data = json_encode ( $posted_data ); 
+
+        // Сохраняем данные в локальном хранилище 
+        $json_data = json_encode( $posted_data, JSON_UNESCAPED_UNICODE );
+        
+        get_information_the_form_cf7lg($form_id, $json_data, $posted_data);
+    } 
+}
+
+?>

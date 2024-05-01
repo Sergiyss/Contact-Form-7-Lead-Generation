@@ -31,10 +31,55 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         // READ THE UTM IN SESSION STORAGE INTO INPUT VALUES
+        getUtmData()
         console.log("done");
     };
 
     setTimeout(function() {
         queryForm();
-    }, 5000);
+    }, 2500);
 });
+
+/**
+ * Возвращаю метки
+ * */
+function getUtmData(){
+
+    var utmData = {};
+	var hiddenFields = [];
+	
+	var forms = document.querySelectorAll('form.wpcf7-form');
+	
+	 // Получаем значения utm-меток из sessionStorage и добавляем их в объект
+    if (sessionStorage.getItem('utm_source')) {
+		hiddenFields.push({ name: 'utm_source_cf7lg', value: sessionStorage.getItem('utm_source') });
+    }
+    if (sessionStorage.getItem('utm_medium')) {
+		hiddenFields.push({ name: 'utm_medium_cf7lg', value: sessionStorage.getItem('utm_medium') });
+    }
+    if (sessionStorage.getItem('utm_campaign')) {
+		hiddenFields.push({ name: 'utm_campaign_cf7lg', value: sessionStorage.getItem('utm_campaign') });
+    }
+    if (sessionStorage.getItem('utm_term')) {
+		hiddenFields.push({ name: 'utm_term_cf7lg', value: sessionStorage.getItem('utm_term') });
+    }
+    if (sessionStorage.getItem('utm_content')) {
+		hiddenFields.push({ name: 'utm_content_cf7lg', value: sessionStorage.getItem('utm_content') });
+    }
+
+
+	// Перебираем найденные формы
+	forms.forEach(function(form) {
+		// Добавляем скрытые поля в форму
+		hiddenFields.forEach(function(field) {
+			var input = document.createElement('input');
+			input.type = 'hidden';
+			input.name = field.name;
+			input.value = field.value;
+			form.appendChild(input);
+		});
+	});
+
+  
+
+}
