@@ -9,7 +9,7 @@ function insetDataBase() {
     form_data.append('deal_currency', document.getElementById('deal_currency_cf7lg').value);
     form_data.append('source', document.getElementById('source_cf7lg').value);
     form_data.append('status', document.getElementById('status_cf7lg').value);
-    form_data.append('service', document.getElementById('service_cf7lg').value);
+    form_data.append('services', getSelectedValuesAsString('service_cf7lg'));
     form_data.append('description_lead', document.getElementById('description_lead_cf7lg').value);
     form_data.append('file', document.getElementById('file_cf7lg').value);
     form_data.append('name', document.getElementById('name_cf7lg').value);
@@ -35,15 +35,15 @@ function insetDataBase() {
                 const dataArray = JSON.parse(xhr.responseText);
                 
                 if(dataArray.status === "success"){
-                    displayToast('Дані успішно збережено', 'Bottom Left', types[3]);
+                    displayToast(cf7lgTranslate.success, 'Bottom Left', types[3]);
                 }else{}
 
             } else {
-                displayToast('Не вдалося надіслати дані', 'Bottom Left', types[5]);
+                displayToast(cf7lgTranslate.error, 'Bottom Left', types[5]);
             }
         };
         xhr.onerror = function() {
-            displayToast('Request failed', 'Bottom Left', types[5])
+            displayToast(cf7lgTranslate.failed, 'Bottom Left', types[5])
         };
         xhr.send(form_data);
 }

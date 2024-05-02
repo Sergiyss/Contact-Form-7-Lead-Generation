@@ -38,3 +38,52 @@ input#name_cf7lg:invalid,
 input#title_cf7lg:invalid {
 	border: 3px solid tomato;
 }
+
+.col-lg-12.settings_utms_tag {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 12px;
+}
+.col-lg-12.settings_utms_tag .form-check-label {
+    color: rgba(0, 0, 0, .7);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+h3.title_cf7lg {
+    background: rgb(41 86 239);
+    margin: 6px 0px 6px 0px;
+    padding-left: 5px;
+    height: 100%;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    align-items: center;
+    font-size: clamp(20px, 2.2vw, 24px);
+    color: white;
+    padding-bottom: 15px;
+}
+
+.bd-callout-info {
+    border-left-color: rgb(41 86 239) !important;
+}
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #e9ecef;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+}
+
+/**
+ * Страница ввода ключа
+ * */
+input.input_style {
+    width: 60%  !important;
+    height: 32px  !important;
+    
+}
+
+form.form_setting_cf7lg table.form-table tbody tr th {
+    width: 100px !important;
+}

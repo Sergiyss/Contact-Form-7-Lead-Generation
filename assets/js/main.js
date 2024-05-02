@@ -1,4 +1,4 @@
-const MAX_LENGHT_AMOUNT = 13;
+const MAX_LENGHT_AMOUNT = 17;
 
 window.addEventListener('beforeunload', function (event) {
 	event.stopImmediatePropagation();
@@ -30,7 +30,8 @@ function displayToast(message, position, type) {
  * */
 function validateInput(input) {
 	// Регулярное выражение для проверки чисел и шаблона [amount-product]
-	 var pattern = /^(\d{0,13}|\[amount-product\])$/;
+	 //var pattern = /^(\d{0,13}|\[amount-product\])$/;
+    var pattern = /^(\d{0,15}|\[amount-product\]|(\d{1,15}\.\d{0,2}))$/;
 
 	if (!pattern.test(input)) {
 		return false;
@@ -43,6 +44,7 @@ function validateInput(input) {
  * */
 var expectedBudgetInput = document.getElementById('expected_budget_cf7lg');
 if (expectedBudgetInput) {
+	const button = document.querySelector('.btn.btn-primary.btn-lg');
     // Если элемент существует, добавляем обработчик события input
     expectedBudgetInput.addEventListener('input', function() {
         var input = this.value; // Получаем значение поля ввода
@@ -51,10 +53,17 @@ if (expectedBudgetInput) {
         // Если ввод не прошел валидацию
         if (!isValid && input != '') {
             // Выводим сообщение об ошибке
-            displayToast('Пожалуйста, введите только числа или шаблон [amount-product].', 'Bottom Left', types[2]);
+            displayToast(cf7lgTranslate.error_input_amount, 'Bottom Left', types[4]);
             // Очищаем поле ввода
             //this.value = '';
-        }
+            if(document.querySelector('.leads_form')){
+				 button.setAttribute('disabled', true);
+			}
+        }else{
+			if(document.querySelector('.leads_form')){
+				 button.removeAttribute('disabled');
+			}
+		}
     });
 }
 

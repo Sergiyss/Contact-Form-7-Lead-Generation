@@ -33,16 +33,19 @@ include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php'
 //Локальные стили
 if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
 
-    wp_enqueue_script('bootstrap_script', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js');
+    wp_enqueue_script('bootstrap_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js');
  	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js');
     wp_enqueue_script('showdown_script', '//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', array(), false);;
     wp_enqueue_script('bulma_script', '//unpkg.com/bulma-toast', array(), false);
 
     // Регистрация и подключение стилей
-    wp_enqueue_style('bootstrap_style', '//cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
+    wp_enqueue_style('bootstrap_style', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
   	wp_enqueue_style('bootstrap_select_style', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css');
     wp_enqueue_style('bulma_style',     '//cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css', array(), false);
     wp_enqueue_style('animate_style',   '//cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css', array(), false);
+    wp_enqueue_style('main_style',      plugin_dir_url(__FILE__). 'assets/css/style.css', array(), false);
+endif;
+if (isset($_GET['page']) && $_GET['page'] === 'custom-cf7-plugin'):
     wp_enqueue_style('main_style',      plugin_dir_url(__FILE__). 'assets/css/style.css', array(), false);
 endif;
 
@@ -60,11 +63,15 @@ endif;
 
 //Глобальные стили
 wp_enqueue_script('main_script_cf7lg', plugin_dir_url( __FILE__ ) . '/assets/js/main.js', array('jquery'), '1.0', true);
-wp_enqueue_script('insert_database', plugin_dir_url( __FILE__ ) . '/assets/js/insert_database.js', array('jquery'), '1.0', true);
+wp_enqueue_script('insert_database', plugin_dir_url( __FILE__ ) . '/assets/js/insert_database.js', array('jquery'), '1.0', true, [ 'wp-i18n' ], '0.0.1');
 wp_enqueue_script('utm_tags', plugin_dir_url( __FILE__ ) . '/assets/js/utm_tags.js', array('jquery'), '1.0', true);
 wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
-
-
+wp_localize_script('insert_database', 'cf7lgTranslate', array(
+        'success' => __('Data saved successfully', 'cf7lg'),
+	 	'error' => __('Failed to send data', 'cf7lg'),
+		'failed' => __('Request failed'),
+		'error_input_amount' => __('Please use numbers or the [amount-product] template.', 'cf7lg'),
+    ));	
 
 /**
  * Активация плагина

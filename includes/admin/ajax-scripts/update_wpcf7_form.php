@@ -13,13 +13,13 @@ function update_wpcf7_form(){
 
     // Получаем данные из POST-запроса
     $data['title'] = isset($_POST['title']) ? $_POST['title'] : null;
-    $data['responsible_id'] = isset($_POST['responsible']) ? intval($_POST['responsible']) : null;
+    $data['responsible_id'] = isset($_POST['responsible']) && is_numeric($_POST['responsible']) ? intval($_POST['responsible']) : null;
     $data['participant_ids'] = isset($_POST['observers']) ? $_POST['observers'] : null;
-    $data['expected_budget'] = isset($_POST['expected_budget']) ? intval($_POST['expected_budget']) : null;
-    $data['currency_id'] = isset($_POST['deal_currency']) ? intval($_POST['deal_currency']) : null;
+	$data['expected_budget'] = isset($_POST['expected_budget']) && is_numeric($_POST['expected_budget']) ? floatval($_POST['expected_budget']) : null;
+    $data['currency_id'] = isset($_POST['deal_currency']) && is_numeric($_POST['deal_currency']) ? intval($_POST['deal_currency']) : null;
     $data['source'] = isset($_POST['source']) ? $_POST['source'] : null;
-    $data['status'] = isset($_POST['status']) ? intval($_POST['status']) : null;
-    $data['service'] = isset($_POST['service']) ? $_POST['service'] : null;
+    $data['status'] = isset($_POST['status']) && is_numeric($_POST['status']) ? intval($_POST['deal_currency']) : null;
+    $data['services'] = isset($_POST['services']) ? $_POST['services'] : null;
     $data['description_lead'] = isset($_POST['description_lead']) ? $_POST['description_lead'] : null;
     $data['file'] = isset($_POST['file']) ? $_POST['file'] : null;
     $data['name'] = isset($_POST['name']) ? stripslashes($_POST['name']) : null;

@@ -5,11 +5,7 @@ add_action ( 'wpcf7_mail_sent' , 'store_cf7_data_in_local_storage' );
 
 function  store_cf7_data_in_local_storage ( $contact_form )   { 
     $form_id = $contact_form->id();
-	$shortcode = $contact_form->shortcode();
-    // Поиск ID формы в шорткоде с помощью регулярного выражения
-    preg_match( '/id="([^"]+)"/', $shortcode, $matches );
-	echo  $matches[1];
-    
+	
     // Получаем данные отправки формы 
     $submission = WPCF7_Submission :: get_instance ();
 

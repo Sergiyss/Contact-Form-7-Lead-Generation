@@ -7,7 +7,7 @@ function settings_page_html_form() { ?>
             </div>
         </div>
       
-        <form method="post" action="options.php">
+        <form method="post" action="options.php" class="form_setting_cf7lg">	
             <?php
                 settings_fields('cf7ld_plugin_settings');
                 do_settings_sections('cf7ld_plugin_settings');
@@ -48,7 +48,7 @@ function cf7ld_initialize_settings() {
     function np_settings_apiKey_form() {
         $form = get_option('ifteam_apiKey');
     ?>
-    <input type="string" name="ifteam_apiKey" value="<?php echo esc_attr($form); ?>" />
+    <input class="input_style" type="string" name="ifteam_apiKey" value="<?php echo esc_attr($form); ?>" />
     <?php } ?>
 
 <?php } ?>

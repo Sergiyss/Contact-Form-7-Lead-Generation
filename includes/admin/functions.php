@@ -26,19 +26,31 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
 				case "participant_ids":
 					$data_array[$key] = array_map('intval', explode(', ',  $value));
 					break;
+				case "expected_budget":
+					$data_array["amount"] = round(floatval($value), 2);
+					break;
 				case "responsible_id":
 				case "currency_id":
 					$data_array[$key] =$value;
 					break;
-				case "service":
-					$data_array["service_ids"] = array(intval($value));
+				case "services":
+					$data_array["service_ids"] = array_map('intval', explode(', ',  $value));;
 					break;
+				case "status":
+					$data_array["status_id"] = intval($value);
+					break;
+				case "description_lead":
+					$data_array["description"] = replaceString($value, $data_form);
+				case "description":
+					$client["comment"] = replaceString($value, $data_form);
 				case "name":
 				case "country":
 				case "email":
-				case "phone":
 				case "client":
 					$client[$key] = replaceString($value, $data_form);
+					break;
+				case "phone":	
+					$client[$key] = formatPhoneNumber(replaceString($value, $data_form));
 					break;
 				case "utm_source":
 				case "utm_medium":
@@ -81,9 +93,7 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
     }
 
 	if(!empty($client)){
-				$client['name'] = "client";
 		$data_array['client'] = $client;
-
 	}
 	
 	$data_array['date'] = date("Y-m-d");
@@ -114,5 +124,26 @@ function replaceString($value_original, $data_form){
 	}
 	return $marge;
 }
-	
+
+/**
+ * Функция замены номера, если номер попал в формате +38066... или 066. То нужно привести к одному формату
+ * 066... потом добавляю +38
+ * */
+function formatPhoneNumber($phoneNumber) {
+    // Удаление всех символов, кроме цифр
+    $phoneNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+    // Проверка наличия кода страны
+    if (strlen($phoneNumber) == 10) {
+        // Добавление кода страны
+        $phoneNumber = '38' . $phoneNumber;
+    } elseif (strlen($phoneNumber) == 9) {
+        // Добавление кода страны и "+" в начало
+        $phoneNumber = '38' . $phoneNumber;
+    }
+    // Добавление "+" в начало номера
+    $phoneNumber = '+' . $phoneNumber;
+    return $phoneNumber;
+}
+
+
 ?>
