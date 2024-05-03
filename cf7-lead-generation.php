@@ -5,7 +5,7 @@
  * Plugin URI: https://if.team
  * Author: if.team
  * Author URI: https://if.team
- * Version: 0.0.3
+ * Version: 0.9
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: if.team
@@ -20,13 +20,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 function ap_action_init(){
 // Локализация
     load_plugin_textdomain('cf7lg', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+	wp_enqueue_script('pw-script', get_template_directory_uri() . '/translate.js', 1000);
+	wp_localize_script('pw-script', 'cf7lgTranslate', array(
+			'success' => __('Data saved successfully', 'cf7lg'),
+			'error' => __('Failed to send data', 'cf7lg'),
+			'failed' => __('Request failed', 'cf7lg'),
+			'error_input_amount' => __('Please use numbers or the [amount-product] template.', 'cf7lg'),
+	));	
 }
 
 // Add actions
 add_action('init', 'ap_action_init');
 
 
-include_once(plugin_dir_path(__FILE__) . '/includes/admin//cf7lg-page-settings.php';
+include_once(plugin_dir_path(__FILE__) . '/includes/admin/cf7lg-page-settings.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/Lead-Generation-Tab_cf7lg.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php');
 
@@ -63,15 +70,10 @@ endif;
 
 //Глобальные стили
 wp_enqueue_script('main_script_cf7lg', plugin_dir_url( __FILE__ ) . '/assets/js/main.js', array('jquery'), '1.0', true);
-wp_enqueue_script('insert_database', plugin_dir_url( __FILE__ ) . '/assets/js/insert_database.js', array('jquery'), '1.0', true, [ 'wp-i18n' ], '0.0.1');
+wp_enqueue_script('insert_database', plugin_dir_url( __FILE__ ) . '/assets/js/insert_database.js', array('jquery'), '1.0', true);
 wp_enqueue_script('utm_tags', plugin_dir_url( __FILE__ ) . '/assets/js/utm_tags.js', array('jquery'), '1.0', true);
 wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
-wp_localize_script('insert_database', 'cf7lgTranslate', array(
-        'success' => __('Data saved successfully', 'cf7lg'),
-	 	'error' => __('Failed to send data', 'cf7lg'),
-		'failed' => __('Request failed'),
-		'error_input_amount' => __('Please use numbers or the [amount-product] template.', 'cf7lg'),
-    ));	
+
 
 /**
  * Активация плагина

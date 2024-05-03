@@ -27,7 +27,7 @@ function cf7ld_initialize_settings() {
 
     add_settings_section(
         'cf7ld_plugin_general_settings_section',
-        'Настройка отправителя',
+        __('Plugin settings Contact Form 7 Lead Generation', 'cf7lg'),
         'cf7ld_section_help',
         'cf7ld_plugin_settings'
     );
@@ -57,7 +57,7 @@ function cf7ld_initialize_settings() {
 
 // Функция обратного вызова для секции "General Settings"
 function cf7ld_section_help() {
-    echo 'Ключ для інтеграції з ifteam ви можете отримати за посиланням ....';
+   // echo 'Ключ для інтеграції з ifteam ви можете отримати за посиланням ....';
 }
 
 ?>
