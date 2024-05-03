@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: cf7lg\n"
-"POT-Creation-Date: 2024-05-03 09:22+0300\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2024-05-03 09:40+0300\n"
 "PO-Revision-Date: 2024-05-03 09:48+0300\n"
 "Last-Translator: \n"
-"Language-Team: ifteam\n"
-"Language: en\n"
+"Language-Team: \n"
+"Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,65 +16,67 @@ msgstr ""
 
 #: cf7-lead-generation.php:70
 msgid "Data saved successfully"
-msgstr ""
+msgstr "Дані успішно збережено"
 
 #: cf7-lead-generation.php:71
 msgid "Failed to send data"
-msgstr ""
+msgstr "Не вдалося надіслати дані"
 
 #: cf7-lead-generation.php:72
 msgid "Request failed"
-msgstr ""
+msgstr "Не вдалося виконати запит"
 
 #: cf7-lead-generation.php:73
 msgid "Please use numbers or the [amount-product] template."
-msgstr ""
+msgstr "Будь ласка, використовуйте цифри або вставте шаблон [amount-product]"
 
 #: front/index.php:6
 msgid "Setting up the Contact Form 7 Lead Generation plugin"
-msgstr ""
+msgstr "Налаштування плагіна Contact Form 7 Lead Generation"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:9
 msgid "Lead Generations"
-msgstr ""
+msgstr "Ліди"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:43
 msgid "ApiKey not found"
-msgstr ""
+msgstr "ApiKey не знайдено"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:45
 msgid "Please enter your apiKey"
-msgstr ""
+msgstr "Будь ласка, введіть свій apiKey"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:46
 msgid ""
 "To use the plugin, you need to insert an ApiKey in the plugin settings, and "
 "if you don't have a key, you need to obtain it."
 msgstr ""
+"Щоб використовувати плагін, вам потрібно вставити ApiKey в налаштуваннях "
+"плагіна, а якщо у вас немає ключа, вам потрібно його отримати."
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:49
 msgid "Add ApiKey"
-msgstr ""
+msgstr "Додати ApiKey"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:50
 msgid "Get ApiKey"
-msgstr ""
+msgstr "Отримайте ApiKey"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:57
 msgid "Specify the attributes that will be used for lead generation."
-msgstr ""
+msgstr "Вкажіть атрибути, які будуть використовуватися для лідогенерації."
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:62
 msgid "Title"
-msgstr ""
+msgstr "Назва ліда"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:69
 msgid "Responsible"
-msgstr ""
+msgstr "Відповідальний"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:79
 msgid "Observers"
-msgstr ""
+msgstr "Учасники"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:95
 msgid ""
@@ -82,35 +84,39 @@ msgid ""
 "так-же можете использовать <strong>шаблон формы</strong>, используя имя "
 "<strong>amount-product</strong> в шаблоне формы. [amount-product]"
 msgstr ""
+"Форма <strong>Очікуваний бюджет (сума)</strong> підтримує введення чисел. "
+"Ви також можете використовувати <strong>шаблон форми</strong>, "
+"використовуючи ім'я <strong>amount-product</strong> у шаблоні форми. "
+"[amount-product]"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:98
 msgid "Expected budget (amount)"
-msgstr ""
+msgstr "Очікуваний бюджет (сума)"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:105
 msgid "Deal currency"
-msgstr ""
+msgstr "Валюта"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:115
 msgid "Source"
-msgstr ""
+msgstr "Джерело"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:122
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:132
 msgid "Service"
-msgstr ""
+msgstr "Сервіс"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:148
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:210
 msgid "Description"
-msgstr ""
+msgstr "Опис"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:155
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:162
 msgid "ID WPCF7 Form"
@@ -118,31 +124,31 @@ msgstr ""
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:172
 msgid "Specify the attributes that will be used to create a client."
-msgstr ""
+msgstr "Вкажіть атрибути, які будуть використовуватися для створення клієнта."
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:178
 msgid "Name"
-msgstr ""
+msgstr "Ім'я"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:186
 msgid "Country"
-msgstr ""
+msgstr "Країна"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:196
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:203
 msgid "Phone"
-msgstr ""
+msgstr "Телефон"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:219
 msgid "UTM tag settings"
-msgstr ""
+msgstr "Налаштування UTM-міток"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:225
 msgid "Use customizable UTM tags"
-msgstr ""
+msgstr "Використовуйте настроювані UTM-мітки"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:230
 msgid "utm_source"
@@ -166,4 +172,4 @@ msgstr ""
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:267
 msgid "Save"
-msgstr ""
+msgstr "Зберегти"
