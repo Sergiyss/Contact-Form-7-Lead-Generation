@@ -23,7 +23,7 @@ function update_wpcf7_form(){
     $data['description_lead'] = isset($_POST['description_lead']) ? $_POST['description_lead'] : null;
     $data['file'] = isset($_POST['file']) ? $_POST['file'] : null;
     $data['name'] = isset($_POST['name']) ? stripslashes($_POST['name']) : null;
-    $data['country'] = isset($_POST['country']) ? $_POST['country'] : null;
+    $data['country'] = isset($_POST['country']) && is_numeric($_POST['country']) ? intval($_POST['country']) : null;
     $data['email'] = isset($_POST['email']) ? $_POST['email'] : null;
     $data['phone'] = isset($_POST['phone']) ? $_POST['phone'] : null;
     $data['description'] = isset($_POST['description']) ? $_POST['description'] : null;

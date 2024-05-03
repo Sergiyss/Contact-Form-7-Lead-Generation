@@ -6,7 +6,7 @@ include_once(WP_PLUGIN_DIR . '/Contact-Form-7-Lead-Generation/includes/database/
 // Добавление раздела в редактор формы
 function cf7lg_add_panel($panels) {
 	$panels['custom-panel'] = array(
-		'title' => 'Ліди',
+		'title' => __('Lead Generations', 'cf7lg'),
 		'callback' => 'cf7lg_panel_content'
 	);
 	return $panels;
@@ -18,7 +18,7 @@ function cf7lg_panel_content($post) {
 	$database = new DataBaseCf7lg();
 	$result = $database->get_data_by_wpcf7_id($_GET['post']);
 	
-	var_dump($result);
+//  	var_dump($result);
 ?>
 
 <!-- Запрашиваю данные с ifteam -->
@@ -29,6 +29,12 @@ function cf7lg_panel_content($post) {
 		$statuses = leadsStatuses_(1);
 		$services = leadsServices();
 		$currencies = leadsСurrencies();
+		$countries = leadsListCountries();
+		
+		
+		var_dump($participants);
+		
+		echo $participants["nextPage"] == false;
 	}
 ?>
 <div class="container leads_form">
@@ -62,7 +68,7 @@ function cf7lg_panel_content($post) {
 			<div class="input-group mb-3">
 				<label class="input-group-text" id="inputGroup-sizing-default" for="responsible_cf7lg"><?php echo __('Responsible', 'cf7lg'); ?></label>
 				<select class="form-select" id="responsible_cf7lg">
-					<?php foreach($participants['data'] as $item): ?>
+					<?php foreach($participants as $item): ?>
 						<option value="<?php echo $item['id']; ?>" <?php if(intval($item['id']) === intval($result["responsible_id"])) echo "selected"; ?>><?php echo $item['name']; ?></option>
 					 <?php endforeach; ?>
 				</select>
@@ -76,7 +82,7 @@ function cf7lg_panel_content($post) {
 						// Ваши данные из базы данных, например:
 						$selected_values = array_map('intval', explode(', ',  $result["participant_ids"]));
 
-						foreach ($participants['data'] as $option) {
+						foreach ($participants as $option) {
 							$selected = in_array($option['id'], $selected_values) ? 'selected' : '';
 							echo '<option value="' . $option['id'] . '" ' . $selected . '>' . $option['name'] . '</option>';
 						}
@@ -95,9 +101,7 @@ function cf7lg_panel_content($post) {
 			</div>    
 		</div>
 		<div class="col-lg-12">
-			<div class="input-group mb-3">
-		
-				
+			<div class="input-group mb-3">		
 				<label class="input-group-text" id="inputGroup-sizing-default" for="deal_currency_cf7lg"><?php echo __('Deal currency', 'cf7lg'); ?> <span class="required"> * </span> </label>
 				<select class="form-select" id="deal_currency_cf7lg">
 					<?php foreach($currencies['data'] as $item): ?>
@@ -149,13 +153,13 @@ function cf7lg_panel_content($post) {
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('File', 'cf7lg'); ?></span>
-				<input type="text" id="file_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-					   value="<?php echo $result["file"]; ?>">
+				<input type="text" id="file_cf7lg" class="form-control" aria-label="Sizing example input" disabled aria-describedby="inputGroup-sizing-default"
+					   value="<?php echo $result["file"];?>" >
 			</div>    
 		</div>
 		<div class="col-lg-12 d-none">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default">ID WPCF7 Form</span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?= __('ID WPCF7 Form', 'cf7lg'); ?></span>
 				<input type="text" id="cf7lg_id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<? echo $_GET['post']; ?>">
 			</div>    
@@ -178,9 +182,13 @@ function cf7lg_panel_content($post) {
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('Country', 'cf7lg'); ?></span>
-				<input type="text" id="country_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-					   value="<?php echo $result["country"]; ?>">
+
+				<label class="input-group-text" id="inputGroup-sizing-default" for="country_cf7lg"><?php echo __('Country', 'cf7lg'); ?></label>
+				<select class="form-select" id="country_cf7lg">
+					<?php foreach($countries['data'] as $item): ?>
+						<option value="<?php echo $item['id']; ?>" <?php if(intval($item['id']) === intval($result["country"])) echo "selected"; ?>><?php echo $item['name']; ?></option>
+					 <?php endforeach; ?>
+				</select>
 			</div>    
 		</div>
 		<div class="col-lg-12">
