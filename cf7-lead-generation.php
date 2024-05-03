@@ -26,7 +26,7 @@ function ap_action_init(){
 add_action('init', 'ap_action_init');
 
 
-include 'front/index.php';
+include_once(plugin_dir_path(__FILE__) . '/includes/admin//cf7lg-page-settings.php';
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/Lead-Generation-Tab_cf7lg.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php');
 
