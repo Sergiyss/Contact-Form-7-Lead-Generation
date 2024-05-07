@@ -98,17 +98,7 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
 	
 	$data_array['date'] = date("Y-m-d");
 	
-	//$data_array[" <<  data_form"] = $data_form;
-	$data_array[" <<  data_form"] =  createLeads(json_encode( $data_array, JSON_UNESCAPED_UNICODE ));
-    $str = json_encode( $data_array, JSON_UNESCAPED_UNICODE );
-	
-
-	
-    /**
-     * Отправляю данные
-     * */
-    mail( "serhii.kr93@gmail.com", "Форма заявки ", $str );
-    
+	createLeads(json_encode( $data_array, JSON_UNESCAPED_UNICODE ));
 }
 
 /**

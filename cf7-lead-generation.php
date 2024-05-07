@@ -5,7 +5,7 @@
  * Plugin URI: https://if.team
  * Author: if.team
  * Author URI: https://if.team
- * Version: 0.9
+ * Version: 0.0.3
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: if.team
@@ -17,16 +17,17 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit();
 }
 
+
 function ap_action_init(){
 // Локализация
     load_plugin_textdomain('cf7lg', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
-	wp_enqueue_script('pw-script', get_template_directory_uri() . '/translate.js', 1000);
+	wp_enqueue_script('pw-script', plugin_dir_url( __FILE__ ) . '/assets/js/translations_cf7lg.js', array(), false);
 	wp_localize_script('pw-script', 'cf7lgTranslate', array(
 			'success' => __('Data saved successfully', 'cf7lg'),
 			'error' => __('Failed to send data', 'cf7lg'),
 			'failed' => __('Request failed', 'cf7lg'),
 			'error_input_amount' => __('Please use numbers or the [amount-product] template.', 'cf7lg'),
-	));	
+	), false);	
 }
 
 // Add actions
@@ -34,7 +35,9 @@ add_action('init', 'ap_action_init');
 
 
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/cf7lg-page-settings.php');
-include_once(plugin_dir_path(__FILE__) . '/includes/admin/Lead-Generation-Tab_cf7lg.php');
+if (isset($_GET['page']) && $_GET['page'] !== 'wpcf7-new'){
+	include_once(plugin_dir_path(__FILE__) . '/includes/admin/Lead-Generation-Tab_cf7lg.php');
+}
 include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php');
 
 //Локальные стили
@@ -42,7 +45,7 @@ if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
 
     wp_enqueue_script('bootstrap_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js');
  	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js');
-    wp_enqueue_script('showdown_script', '//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', array(), false);;
+    wp_enqueue_script('showdown_script', '//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', array(), false);
     wp_enqueue_script('bulma_script', '//unpkg.com/bulma-toast', array(), false);
 
     // Регистрация и подключение стилей
@@ -80,7 +83,7 @@ wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-aj
  * */
 function  activate_pulugin(){
     $database = new DataBaseCf7lg();
-
+	//$database->dropTable();
     $database->createTable();
 }
 register_activation_hook(__FILE__, 'activate_pulugin');

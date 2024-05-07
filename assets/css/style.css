@@ -9,17 +9,16 @@ span#inputGroup-sizing-default {
 
 
 .bootstrap-select>.dropdown-toggle {
-	max-width: 600px !important;
-	min-width: 250px !important;
-	border-radius: 0;
-	background: white;
+    max-width: 600px !important;
+    min-width: 400px !important;
+    border-radius: 0;
+    background: white;
+    border: 1px solid #8c8f94;
 }
 
 .col-lg-2.save_form button {
 	width: 200px;
 }
-
-
 
 .form-check-input:checked {
 	background-color: white !important;

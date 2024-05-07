@@ -18,7 +18,7 @@ function cf7lg_panel_content($post) {
 	$database = new DataBaseCf7lg();
 	$result = $database->get_data_by_wpcf7_id($_GET['post']);
 	
-//  	var_dump($result);
+  	//var_dump($result);
 ?>
 
 <!-- Запрашиваю данные с ifteam -->
@@ -29,15 +29,18 @@ function cf7lg_panel_content($post) {
 		$statuses = leadsStatuses_(1);
 		$services = leadsServices();
 		$currencies = leadsСurrencies();
-		$countries = leadsListCountries();
+		$countries = leadsListCountries(1);
 		
+		//var_dump($countries);
 		
-		var_dump($participants);
-		
-		echo $participants["nextPage"] == false;
+		echo $countries["total"];
 	}
 ?>
 <div class="container leads_form">
+	<?php if($currencies === NULL): ?>
+	<h2>Ошибка получения данных из сервера</h2>
+	<?php endif; ?>
+	
 	<?php if(empty(get_option('ifteam_apiKey'))): ?>
 	<div class="card border-warning mb-12" style="max-width: 38rem;">
 		<div class="card-header"><?= __('ApiKey not found', 'cf7lg'); ?></div>
@@ -92,7 +95,7 @@ function cf7lg_panel_content($post) {
 		</div>
 		<div class="col-lg-12">
 				<p class="bd-callout bd-callout-info">
-					<?= __("Форма <strong>Expected budget (amount)</strong> поддерживает ввод чисел. Вы так-же можете использовать <strong>шаблон формы</strong>, используя имя <strong>amount-product</strong> в шаблоне формы. [amount-product]"); ?>
+					<?= __('The form <strong>Expected budget (amount)</strong> supports numeric input. You can also utilize a form template using the name <strong>amount-product</strong> in the form template. [amount-product]', 'cf7lg'); ?>
 				</p>
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('Expected budget (amount)', 'cf7lg'); ?></span>
@@ -161,7 +164,7 @@ function cf7lg_panel_content($post) {
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="inputGroup-sizing-default"><?= __('ID WPCF7 Form', 'cf7lg'); ?></span>
 				<input type="text" id="cf7lg_id" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
-					   value="<? echo $_GET['post']; ?>">
+					   value="<?= $_GET['post']; ?>">
 			</div>    
 		</div>
 
@@ -185,7 +188,7 @@ function cf7lg_panel_content($post) {
 
 				<label class="input-group-text" id="inputGroup-sizing-default" for="country_cf7lg"><?php echo __('Country', 'cf7lg'); ?></label>
 				<select class="form-select" id="country_cf7lg">
-					<?php foreach($countries['data'] as $item): ?>
+					<?php foreach($countries as $item): ?>
 						<option value="<?php echo $item['id']; ?>" <?php if(intval($item['id']) === intval($result["country"])) echo "selected"; ?>><?php echo $item['name']; ?></option>
 					 <?php endforeach; ?>
 				</select>

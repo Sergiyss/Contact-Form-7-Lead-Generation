@@ -78,9 +78,9 @@ msgstr ""
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:95
 msgid ""
-"Форма <strong>Expected budget (amount)</strong> поддерживает ввод чисел. Вы "
-"так-же можете использовать <strong>шаблон формы</strong>, используя имя "
-"<strong>amount-product</strong> в шаблоне формы. [amount-product]"
+"The form <strong>Expected budget (amount)</strong> supports numeric input. You "
+"an also utilize a form template using the name <strong>шаблон формы</strong>, "
+"<strong>amount-product</strong> in the form template. [amount-product]"
 msgstr ""
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:98

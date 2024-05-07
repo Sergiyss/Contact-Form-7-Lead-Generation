@@ -31,7 +31,21 @@ class DataBaseCf7lg{
 			dbDelta( $sql );
 		}
 	}
+	
+	
+	/**
+	 * Удаление базы данных
+	 * */
+	function dropTable() {
+		global $wpdb;
+		$table_name = $this->getNameTable($wpdb);
 
+		// Проверка на существование таблицы
+		if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
+			// Удаление таблицы
+			$wpdb->query("DROP TABLE IF EXISTS $table_name");
+		}
+	}
 	/**
 	 * Вставка новых данных в базу данных
 	 * 
