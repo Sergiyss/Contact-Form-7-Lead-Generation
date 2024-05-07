@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cf7lg\n"
 "POT-Creation-Date: 2024-05-07 09:56+0300\n"
-"PO-Revision-Date: 2024-05-07 09:56+0300\n"
+"PO-Revision-Date: 2024-05-07 10:11+0300\n"
 "Last-Translator: \n"
 "Language-Team: ifteam\n"
 "Language: ru\n"
@@ -32,7 +32,7 @@ msgstr "Пожалуйста, используйте цифры или вста�
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:9
 msgid "Lead Generations"
-msgstr "Генерация лидеров"
+msgstr "Генерация лидов"
 
 #: includes/admin/Lead-Generation-Tab_cf7lg.php:46
 msgid "ApiKey not found"

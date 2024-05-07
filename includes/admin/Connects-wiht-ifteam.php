@@ -236,6 +236,9 @@ function leadsListCountries($page){
 function getLocale(){
 	$locale = explode('_', get_locale())[0];
 	if($locale != 'uk'){
+		if($locale == 'ru'){
+			return 'uk';
+		}
 		return 'en';
 	}else{
 		return $locale;
