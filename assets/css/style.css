@@ -74,6 +74,10 @@ h3.title_cf7lg {
     border-radius: .25rem;
 }
 
+p.bd-callout.bd-callout-danger {
+    border-left: .25rem solid #d63638;
+}
+
 /**
  * Страница ввода ключа
  * */

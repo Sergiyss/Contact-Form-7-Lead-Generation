@@ -2,7 +2,7 @@
 //автоподгрузка данных для списка участников, если их больше чем 50 на страницу
 
 
-$BASE_URL = "https://api.ifteam2.staj.bid/";
+$BASE_URL = "https://api.demo.if.team/";
 
 //Получение статусов
 function leadsStatuses_($page){

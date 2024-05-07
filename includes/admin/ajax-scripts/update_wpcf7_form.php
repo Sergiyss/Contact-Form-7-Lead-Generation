@@ -4,8 +4,9 @@
 * Вносим информацию по форме
 */
 function update_wpcf7_form(){
-    include_once(get_template_directory() . '/includes/database/database-cf7lg.php');
-
+    // include_once(get_template_directory() . '/includes/database/database-cf7lg.php');
+    include_once(__DIR__ . '/../../database/database-cf7lg.php');
+    
     $database = new DataBaseCf7lg();
 
     // Создаем ассоциативный массив для хранения данных
@@ -18,7 +19,7 @@ function update_wpcf7_form(){
 	$data['expected_budget'] = isset($_POST['expected_budget']) && is_numeric($_POST['expected_budget']) ? floatval($_POST['expected_budget']) : null;
     $data['currency_id'] = isset($_POST['deal_currency']) && is_numeric($_POST['deal_currency']) ? intval($_POST['deal_currency']) : null;
     $data['source'] = isset($_POST['source']) ? $_POST['source'] : null;
-    $data['status'] = isset($_POST['status']) && is_numeric($_POST['status']) ? intval($_POST['deal_currency']) : null;
+    $data['status'] = isset($_POST['status']) && is_numeric($_POST['status']) ? intval($_POST['status']) : null;
     $data['services'] = isset($_POST['services']) ? $_POST['services'] : null;
     $data['description_lead'] = isset($_POST['description_lead']) ? $_POST['description_lead'] : null;
     $data['file'] = isset($_POST['file']) ? $_POST['file'] : null;

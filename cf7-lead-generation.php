@@ -43,10 +43,10 @@ include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php'
 //Локальные стили
 if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
 
-    wp_enqueue_script('bootstrap_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js');
- 	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js');
-    wp_enqueue_script('showdown_script', '//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', array(), false);
-    wp_enqueue_script('bulma_script', '//unpkg.com/bulma-toast', array(), false);
+    wp_enqueue_script('bootstrap_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js', array('jquery'), false);
+ 	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js', array('jquery'));
+    wp_enqueue_script('showdown_script', '//cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js', array('jquery'), false);
+    wp_enqueue_script('bulma_script', '//unpkg.com/bulma-toast', array('jquery'), false);
 
     // Регистрация и подключение стилей
     wp_enqueue_style('bootstrap_style', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css');
