@@ -1,7 +1,7 @@
 <?php
 
 class DataBaseCf7lg{
-
+	//Основная таблица данных
 	function getNameTable($wpdb){
 		return $wpdb->prefix . 'database_cf7lg';
 	}

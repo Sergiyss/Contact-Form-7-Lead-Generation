@@ -5,7 +5,7 @@
  * Plugin URI: https://if.team
  * Author: if.team
  * Author URI: https://if.team
- * Version: 0.0.3
+ * Version: 0.0.9
  * Requires at least: 5.0
  * Requires PHP: 7.4
  * Text Domain: if.team
@@ -38,10 +38,11 @@ include_once(plugin_dir_path(__FILE__) . '/includes/admin/cf7lg-page-settings.ph
 if (isset($_GET['page']) && $_GET['page'] !== 'wpcf7-new'){
 	include_once(plugin_dir_path(__FILE__) . '/includes/admin/Lead-Generation-Tab_cf7lg.php');
 }
+include_once(plugin_dir_path(__FILE__) . '/includes/database/database-log-cf7lg.php'); //база данных для логов
 include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php');
 
 //Локальные стили
-if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
+if (isset($_GET['page']) && $_GET['page'] === 'wpcf7' || $_GET['page'] === 'cf7lg-plugin'):
 
     wp_enqueue_script('bootstrap_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js', array('jquery'), false);
  	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js', array('jquery'));
@@ -55,26 +56,15 @@ if (isset($_GET['page']) && $_GET['page'] === 'wpcf7'):
     wp_enqueue_style('animate_style',   '//cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css', array(), false);
     wp_enqueue_style('main_style',      plugin_dir_url(__FILE__). 'assets/css/style.css', array(), false);
 endif;
-if (isset($_GET['page']) && $_GET['page'] === 'custom-cf7-plugin'):
+if (isset($_GET['page']) && $_GET['page'] === 'cf7lg-plugin'):
     wp_enqueue_style('main_style',      plugin_dir_url(__FILE__). 'assets/css/style.css', array(), false);
-endif;
-
-if (isset($_GET['page']) && $_GET['page'] === 'wpcf7' && $_GET['active-tab'] === '4'):
-
-?>
-
-<style>
-    .postbox-container p.submit input.button-primary {display: none !important;}
-</style
-
-<?php 
-
 endif;
 
 //Глобальные стили
 wp_enqueue_script('main_script_cf7lg', plugin_dir_url( __FILE__ ) . '/assets/js/main.js', array('jquery'), '1.0', true);
 wp_enqueue_script('insert_database', plugin_dir_url( __FILE__ ) . '/assets/js/insert_database.js', array('jquery'), '1.0', true);
 wp_enqueue_script('utm_tags', plugin_dir_url( __FILE__ ) . '/assets/js/utm_tags.js', array('jquery'), '1.0', true);
+wp_enqueue_script('repeat_request', plugin_dir_url( __FILE__ ) . '/assets/js/repeat_request.js', array('jquery'), '1.0', true);
 wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 
 
@@ -82,19 +72,22 @@ wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-aj
  * Активация плагина
  * */
 function  activate_pulugin(){
-    $database = new DataBaseCf7lg();
-	//$database->dropTable();
+    $database    = new DataBaseCf7lg();
     $database->createTable();
+    
+    $databaseLog = new DataBaseLogCf7lg();
+	$databaseLog->dropTable();
+    $databaseLog->createTable();
 }
 register_activation_hook(__FILE__, 'activate_pulugin');
 
 function cf7lg_plugin_menu() {
     add_submenu_page(
         'wpcf7',
-        'Custom CF7 Plugin',
-        'Custom CF7 Plugin',
+        'CF7LG Plugin',
+        'CF7LG Plugin',
         'manage_options',
-        'custom-cf7-plugin',
+        'cf7lg-plugin',
         'settings_page_html_form'
     );
 }
@@ -110,6 +103,7 @@ include_once(plugin_dir_path(__FILE__) . '/includes/Callback-contact-form.php');
 
 
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/ajax-scripts/update_wpcf7_form.php');
+include_once(plugin_dir_path(__FILE__) . '/includes/admin/ajax-scripts/repeat_request.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/functions.php');
 include_once(plugin_dir_path(__FILE__) . '/includes/admin/Connects-wiht-ifteam.php');
 

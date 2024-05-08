@@ -90,3 +90,29 @@ input.input_style {
 form.form_setting_cf7lg table.form-table tbody tr th {
     width: 100px !important;
 }
+
+/**
+ * Форма
+ * */
+
+.container.table_container table.table.table-bordered thead tr th {
+    border: 1px solid #bababa !important;
+    min-width: 170px;
+    background: #174be6;
+    color: white;
+}
+.container.table_container table.table.table-bordered tbody tr td,
+.container.table_container table.table.table-bordered tbody tr th {
+    border: 1px solid #174be629 !important;
+    min-width: 170px;
+}
+
+.container.table_container table.table.table-bordered thead tr th.col-1 {
+    width: 60px !important;
+}
+
+ul#pills-tab {
+	background: #0d6efd08;
+    padding: 10px;
+    border-radius: 6px;
+}

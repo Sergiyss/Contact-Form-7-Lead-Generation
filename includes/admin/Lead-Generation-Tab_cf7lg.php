@@ -17,8 +17,6 @@ add_filter('wpcf7_editor_panels', 'cf7lg_add_panel');
 function cf7lg_panel_content($post) {
 	$database = new DataBaseCf7lg();
 	$result = $database->get_data_by_wpcf7_id($_GET['post']);
-	
-  	var_dump($result);
 ?>
 
 <!-- Запрашиваю данные с ifteam -->
@@ -30,9 +28,6 @@ function cf7lg_panel_content($post) {
 		$services = leadsServices();
 		$currencies = leadsСurrencies();
 		$countries = leadsListCountries(1);
-		
-		
-		var_dump($statuses);
 	}
 ?>
 <div class="container leads_form">

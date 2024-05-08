@@ -114,6 +114,7 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
 	$data_array['date'] = date("Y-m-d");
 	
 	createLeads(json_encode( $data_array, JSON_UNESCAPED_UNICODE ));
+	
 }
 
 /**
@@ -150,5 +151,20 @@ function formatPhoneNumber($phoneNumber) {
     return $phoneNumber;
 }
 
+
+
+function getColorStatus($code){
+    switch ($code) {
+    	case 200:
+		case 201:
+			return "table-success";
+			break;
+		case 422:
+		case 400:
+		case 500:
+			return "table-danger";
+			break;
+		}
+}
 
 ?>
