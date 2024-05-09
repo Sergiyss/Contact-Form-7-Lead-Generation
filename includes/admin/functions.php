@@ -53,14 +53,26 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
 					break;
 				case "name":
 				case "email":
+					$str = replaceString($value, $data_form);
+					//Бывает такое, что условие empty не срабатывает, хотя там строка пустая.
+					if(!empty(str) && strlen($str) > 2){
+						$client[$key] = $str;
+					}
+					break;
 				case "client":
-					$client[$key] = replaceString($value, $data_form);
+					$str = replaceString($value, $data_form);
+					if(!empty(str)){
+						$client[$key] = $str;
+					}
 					break;
 				case "country":
 					$client["country_id"] = intval($value);
 					break;
-				case "phone":	
-					$client[$key] = formatPhoneNumber(replaceString($value, $data_form));
+				case "phone":
+					$phone_str = replaceString($value, $data_form);
+					if(!empty($phone_str) && strlen($str) > 2){
+						$client[$key] = formatPhoneNumber($phone_str);
+					} 
 					break;
 				case "utm_source":
 				case "utm_medium":
@@ -68,7 +80,10 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
 				case "utm_term":
 				case "utm_content":
 					if ($data['utm_tags_checked'] === "true") {
-						$data_array[$key] = replaceString($value, $data_form);
+						$utms = replaceString($value, $data_form);
+						if(!empty($utms)){
+							$data_array[$key] = $utms;
+						}
 					}
 					break;
 				case "utm_tags_checked":

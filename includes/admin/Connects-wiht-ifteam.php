@@ -177,9 +177,11 @@ function createLeads($data){
 	$response = wp_remote_retrieve_response_message($response);
 
 
-	
+	date_default_timezone_set('Europe/Kiev'); // Устанавливаем часовой пояс для Киева
+	$date = date('d.m.y H:i', time()); // Форматируем дату и время в соответствии с заданным форматом
 
-	$insert_result = $database->insertData($code, date('d-m-Y H:m'), $data, $response);
+
+	$insert_result = $database->insertData($code, $date, $data, $response);
 
 
 	return $response;
