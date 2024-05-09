@@ -98,6 +98,7 @@ form.form_setting_cf7lg table.form-table tbody tr th {
 .container.table_container table.table.table-bordered thead tr th {
     border: 1px solid #bababa !important;
     min-width: 170px;
+	max-width: 320px;
     background: #174be6;
     color: white;
 }
@@ -105,6 +106,7 @@ form.form_setting_cf7lg table.form-table tbody tr th {
 .container.table_container table.table.table-bordered tbody tr th {
     border: 1px solid #174be629 !important;
     min-width: 170px;
+	max-width: 320px;
 }
 
 .container.table_container table.table.table-bordered thead tr th.col-1 {
@@ -116,3 +118,25 @@ ul#pills-tab {
     padding: 10px;
     border-radius: 6px;
 }
+
+.container.table_container table.table.table-bordered tbody tr td, .container.table_container table.table.table-bordered tbody tr th p {
+    overflow: auto;
+    height: 100px !important;
+}
+
+.container.table_container table.table.table-bordered tbody tr td::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+
+}
+ 
+.container.table_container table.table.table-bordered tbody tr td::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.container.table_container table.table.table-bordered tbody tr td::-webkit-scrollbar-thumb {
+  background-color: #0884ff;
+  outline: 1px solid #0884ff;
+}
+
+

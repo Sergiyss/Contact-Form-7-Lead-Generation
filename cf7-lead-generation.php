@@ -18,9 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+
 function ap_action_init(){
 // Локализация
-    load_plugin_textdomain('cf7lg', false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
+    load_plugin_textdomain( 'cf7lg', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	wp_enqueue_script('pw-script', plugin_dir_url( __FILE__ ) . '/assets/js/translations_cf7lg.js', array(), false);
 	wp_localize_script('pw-script', 'cf7lgTranslate', array(
 			'success' => __('Data saved successfully', 'cf7lg'),
@@ -73,10 +74,11 @@ wp_localize_script( 'js_aut', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-aj
  * */
 function  activate_pulugin(){
     $database    = new DataBaseCf7lg();
+    // $database->dropTable();
     $database->createTable();
     
     $databaseLog = new DataBaseLogCf7lg();
-	$databaseLog->dropTable();
+	// $databaseLog->dropTable();
     $databaseLog->createTable();
 }
 register_activation_hook(__FILE__, 'activate_pulugin');
@@ -84,8 +86,8 @@ register_activation_hook(__FILE__, 'activate_pulugin');
 function cf7lg_plugin_menu() {
     add_submenu_page(
         'wpcf7',
-        'CF7LG Plugin',
-        'CF7LG Plugin',
+        'CF7 Lead Generation',
+        'CF7 Lead Generation',
         'manage_options',
         'cf7lg-plugin',
         'settings_page_html_form'

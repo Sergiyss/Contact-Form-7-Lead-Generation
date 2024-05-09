@@ -48,11 +48,11 @@ function settings_page_html_form() { ?>
                   <thead>
                     <tr>
 					  <th class="col-1" scope="col"><?= __('ID', 'cf7lg'); ?></th>
-                      <th scope="col"><?= __('Date', 'cf7lg'); ?></th>
-                      <th class="col-1" scope="col"><?= __('Server response', 'cf7lg'); ?></th>
-                      <th class="d-none" scope="col"><?= __('Response', 'cf7lg'); ?></th>
+                      <th scope="col"><?= __('Date (Server)', 'cf7lg'); ?></th>
+                      <th class="col-1" scope="col"><?= __('Server code', 'cf7lg'); ?></th>
+                      <th class="d-none_" scope="col"><?= __('Request', 'cf7lg'); ?></th>
                       <th scope="col"><?= __('Message', 'cf7lg'); ?></th>
-                      <th scope="col"><?= __('Repeat', 'cf7lg'); ?></th>
+                      <th scope="col"><?= __('Repeat request', 'cf7lg'); ?></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -60,9 +60,12 @@ function settings_page_html_form() { ?>
 					  <tr>
 					  <th  id="date_created" scope="row"><?= $item['id']; ?></th>
                       <th  id="date_created" scope="row"><?= $item['date_created']; ?></th>
-                      <td  class="<?= getColorStatus($item['status_code']); ?>" id="status_code"     ><?= $item['status_code']; ?></td>
-                      <td class="d-none" id="request"         >
-                          <input type="text" class="form-control" id="server_response_<?= $item['id']; ?>" aria-describedby="basic-addon3" value="<?= htmlspecialchars($item['request']); ?>">
+                      <td  class="<?= getColorStatus($item['status_code']); ?>" id="status_code"><?= $item['status_code']; ?></td>
+                      <td class="d-none_" id="request">
+						  <p>
+							  <?= urldecode($item['request']); ?>
+						  </p>
+                          <input type="text" class="form-control d-none" id="server_response_<?= $item['id']; ?>" aria-describedby="basic-addon3" value="<?= htmlspecialchars($item['request']); ?>">
                      </td>
                       <td  id="server_response" ><?= $item['server_response']; ?></td>
                       <td>

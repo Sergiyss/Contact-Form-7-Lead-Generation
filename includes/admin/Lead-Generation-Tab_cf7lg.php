@@ -43,7 +43,7 @@ function cf7lg_panel_content($post) {
 			<p class="card-text"><?= __('To use the plugin, you need to insert an ApiKey in the plugin settings, and if you don\'t have a key, you need to obtain it.', 'cf7lg'); ?></p>
 		</div>
 		<div class="card-body">
-			<a href="/wp-admin/admin.php?page=custom-cf7-plugin" class="btn btn-primary"><?= __('Add ApiKey', 'cf7lg'); ?></a>
+			<a href="/wp-admin/admin.php?page=cf7lg-plugin" class="btn btn-primary"><?= __('Add ApiKey', 'cf7lg'); ?></a>
 			<a href="https://if.team" class="btn btn-primary" target="_blank"><?= __('Get ApiKey', 'cf7lg'); ?></a>
 		</div>
 	</div>
@@ -172,7 +172,7 @@ function cf7lg_panel_content($post) {
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('Name', 'cf7lg'); ?> <span class="required"> * </span> </span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('Full Name', 'cf7lg'); ?> <span class="required"> * </span> </span>
 				<input type="text" id="name_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<?php echo $result["name"]; ?>">
 			</div>    
@@ -216,6 +216,15 @@ function cf7lg_panel_content($post) {
 				<?= __('UTM tag settings', 'cf7lg'); ?>
 			</h3>
 		</div>
+
+		<div class="bd-callout bd-callout-info">
+			<strong><?php echo esc_html(__('UTM tags can be used in two ways:', 'cf7lg')); ?></strong>
+			<ul>
+			    <li><strong>1.</strong> <?php echo esc_html(__('Use automatic insertion, which only works after navigating from a source that passes UTM tags in the GET parameters, then saves them in cookies.', 'cf7lg')); ?></li>
+			    <li><strong>2.</strong> <?php echo esc_html(__('Use the manual option. You need to activate the checkbox and insert your template.', 'cf7lg')); ?></li>
+			</ul>
+		</div>
+
 		<div class="col-lg-12 settings_utms_tag">
 			<input class="form-check-input" type="checkbox" value="" id="utm_active_custom_tags_cf7lg" <?php if($result["utm_tags_checked"] === 'true') echo "checked"; ?>>
 			<label class="form-check-label" for="utm_active_custom_tags_cf7lg">
@@ -224,35 +233,35 @@ function cf7lg_panel_content($post) {
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm_source', 'cf7lg'); ?></span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm source', 'cf7lg'); ?></span>
 				<input type="text" id="utm_source_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<?php echo $result["utm_source"]; ?>">
 			</div>    
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm_medium', 'cf7lg'); ?></span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm medium', 'cf7lg'); ?></span>
 				<input type="text" id="utm_medium_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<?php echo $result["utm_medium"]; ?>">
 			</div>    
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm_campaign', 'cf7lg'); ?></span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm campaign', 'cf7lg'); ?></span>
 				<input type="text" id="utm_campaign_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<?php echo $result["utm_campaign"]; ?>">
 			</div>    
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm_term', 'cf7lg'); ?></span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm term', 'cf7lg'); ?></span>
 				<input type="text" id="utm_term_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<?php echo $result["utm_term"]; ?>">
 			</div>    
 		</div>
 		<div class="col-lg-12">
 			<div class="input-group mb-3">
-				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm_content', 'cf7lg'); ?></span>
+				<span class="input-group-text" id="inputGroup-sizing-default"><?php echo __('utm content', 'cf7lg'); ?></span>
 				<input type="text" id="utm_content_cf7lg" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"
 					   value="<?php echo $result["utm_content"]; ?>">
 			</div>    

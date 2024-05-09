@@ -2,9 +2,9 @@
 //автоподгрузка данных для списка участников, если их больше чем 50 на страницу
 
 
-// $BASE_URL = "https://api.demo.if.team/";
+$BASE_URL = "https://api.demo.if.team/";
 
-$BASE_URL = "https://api.ifteam2.staj.bid/";
+//$BASE_URL = "https://api.ifteam2.staj.bid/";
 
 //Получение статусов
 function leadsStatuses_($page){
@@ -170,8 +170,8 @@ function createLeads($data){
 		'body'    => $data,
 	);
 
-	//$response = wp_remote_post( $BASE_URL."integrations/leads", $args);
-	$response = wp_remote_get( $BASE_URL."error", $args);
+	$response = wp_remote_post( $BASE_URL."integrations/leads", $args);
+	//$response = wp_remote_get( $BASE_URL."error", $args); // дебаг логера
 	$code = wp_remote_retrieve_response_code( $response );
 	// Получаем тело ответа
 	$response = wp_remote_retrieve_response_message($response);
@@ -183,18 +183,6 @@ function createLeads($data){
 
 
 	return $response;
-	
-	// // проверим правильный ли получили ответ
-	// if ( is_wp_error( $response ) ){
-	// 	echo $response->get_error_message();
-	// }
-	// elseif( wp_remote_retrieve_response_code( $response ) === 200 ){
-	// 	// Все OK, делаем что нибудь с данными $request['body']
-	// 	$body = wp_remote_retrieve_body( $response );
-	// 	$data = json_decode( $body, true );
-
-	// 	return $data;
-	// }
 }
 
 //Повторная отправка данных на сервер
@@ -294,14 +282,8 @@ function leadsListCountries($page){
 //Потому что 2 языка
 function getLocale(){
 	$locale = explode('_', get_locale())[0];
-	if($locale != 'uk'){
-		if($locale == 'ru'){
-			return 'uk';
-		}
-		return 'en';
-	}else{
-		return $locale;
-	}
+	
+	if($locale == 'uk' || $locale == 'ru'){ return 'uk';}else{return 'en';}
 }
 
 ?>

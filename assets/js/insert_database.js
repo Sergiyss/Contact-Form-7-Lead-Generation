@@ -12,7 +12,7 @@ function insetDataBase() {
     form_data.append('services', getSelectedValuesAsString('service_cf7lg'));
     form_data.append('description_lead', document.getElementById('description_lead_cf7lg').value);
     form_data.append('file', document.getElementById('file_cf7lg').value);
-    form_data.append('name', document.getElementById('name_cf7lg').value);
+    form_data.append('full_name', document.getElementById('name_cf7lg').value);
     form_data.append('country', document.getElementById('country_cf7lg').value);
     form_data.append('email', document.getElementById('email_cf7lg').value);
     form_data.append('phone', document.getElementById('phone_cf7lg').value);

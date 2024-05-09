@@ -122,11 +122,21 @@ function get_information_the_form_cf7lg($id_form, $json_data, $data_form){
  * 
  * Например. Пользваотель захотел описать форму как коструктор "Ім'я [your-name]", то [your-name]
  * нужно заменить на ключ из $data_form
+ * 
+ * А может быть такое что $replacement будет массивом
  * */
 function replaceString($value_original, $data_form){
 	$marge = $value_original;
 	foreach ($data_form as $key_form => $replacement) {
-		$marge = str_replace("[$key_form]", $replacement, $marge);
+		if(!is_array($replacement)){
+			$marge = str_replace("[$key_form]", $replacement, $marge);	
+		}else{
+			$new_str = "";
+			foreach($replacement as $item){
+				$new_str .= $item.",";
+			}
+			$marge = str_replace("[$key_form]", $new_str, $marge);	
+		}
 	}
 	return $marge;
 }

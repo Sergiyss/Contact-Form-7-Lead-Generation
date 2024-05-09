@@ -19,6 +19,8 @@ function  store_cf7_data_in_local_storage ( $contact_form )   {
 
         // Сохраняем данные в локальном хранилище 
         $json_data = json_encode( $posted_data, JSON_UNESCAPED_UNICODE );
+		
+		// mail( "serhii.kr93@gmail.com", "Форма заявки ", $json_data ); //дебаг
         
         get_information_the_form_cf7lg($form_id, $json_data, $posted_data);
     } 
