@@ -43,7 +43,7 @@ include_once(plugin_dir_path(__FILE__) . '/includes/database/database-log-cf7lg.
 include_once(plugin_dir_path(__FILE__) . '/includes/database/database-cf7lg.php');
 
 //Локальные стили
-if (isset($_GET['page']) && $_GET['page'] === 'wpcf7' || $_GET['page'] === 'cf7lg-plugin'):
+if ((isset($_GET['page']) && $_GET['page'] === 'wpcf7') || (isset($_GET['page']) &&  $_GET['page'] === 'cf7lg-plugin')) :
 
     wp_enqueue_script('bootstrap_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js', array('jquery'), false);
  	wp_enqueue_script('bootstrap_select_script', '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js', array('jquery'));
