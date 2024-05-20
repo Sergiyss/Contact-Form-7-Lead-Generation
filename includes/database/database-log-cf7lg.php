@@ -90,7 +90,6 @@ class DataBaseLogCf7lg{
 	    // Выполняем запрос на обновление данных
 	    $result = $wpdb->update($table_name, $data, $where);
 	}
-
 }
 
 ?>

@@ -32,7 +32,7 @@ class DataBaseCf7lg{
 		}
 	}
 	
-	
+
 	/**
 	 * Удаление базы данных
 	 * */
@@ -92,7 +92,6 @@ class DataBaseCf7lg{
 		return $data_array;
 		
 	}
-	
 }
 
 ?>
