@@ -149,7 +149,6 @@ function leadsСurrencies(){
 	}
 }
 
-
 //Отправляю данные на сервер для создания лида.
 function createLeads($data){
 	global $BASE_URL;
@@ -279,7 +278,6 @@ function leadsListCountries($page){
     } while ($page <= $totalPages); // Перебираем страницы до тех пор, пока не достигнем общего количества страниц
     return $allCountries;
 }
-
 
 //Потому что 2 языка
 function getLocale(){
