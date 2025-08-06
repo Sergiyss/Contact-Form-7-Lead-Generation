@@ -176,8 +176,6 @@ function formatPhoneNumber($phoneNumber) {
     return $phoneNumber;
 }
 
-
-
 function getColorStatus($code){
     switch ($code) {
     	case 200:
@@ -191,5 +189,3 @@ function getColorStatus($code){
 			break;
 		}
 }
-
-?>

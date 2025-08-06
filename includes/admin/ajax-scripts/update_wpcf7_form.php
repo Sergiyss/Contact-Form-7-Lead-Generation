@@ -54,7 +54,6 @@ function update_wpcf7_form(){
 
     wp_die();
 }
-
 add_action('wp_ajax_update_wpcf7_form', 'update_wpcf7_form');
 add_action('wp_ajax_nopriv_update_wpcf7_form', 'update_wpcf7_form'); 
 ?>

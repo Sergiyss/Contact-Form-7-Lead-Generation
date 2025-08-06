@@ -97,4 +97,3 @@ if( isset( $_POST['discuss'] ) ) {
         return $data;
     }
 }
-?>

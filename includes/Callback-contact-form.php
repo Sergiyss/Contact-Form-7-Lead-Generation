@@ -1,8 +1,5 @@
-<?php 
-
-
-add_action ( 'wpcf7_mail_sent' , 'store_cf7_data_in_local_storage' ); 
-
+<?php
+add_action ( 'wpcf7_mail_sent' , 'store_cf7_data_in_local_storage' );
 function  store_cf7_data_in_local_storage ( $contact_form )   { 
     $form_id = $contact_form->id();
 	
@@ -25,5 +22,3 @@ function  store_cf7_data_in_local_storage ( $contact_form )   {
         get_information_the_form_cf7lg($form_id, $json_data, $posted_data);
     } 
 }
-
-?>

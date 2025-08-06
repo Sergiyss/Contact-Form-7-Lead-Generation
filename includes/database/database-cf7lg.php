@@ -93,5 +93,3 @@ class DataBaseCf7lg{
 		
 	}
 }
-
-?>

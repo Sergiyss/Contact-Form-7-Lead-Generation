@@ -279,7 +279,8 @@ window.addEventListener("load", function() {
 	isActiveUtmInputs();
 });
 </script>
-<?php } //end содержимое раздела ^^^
+<?php } ?>
+<?php
 
 // Добавление поля в раздел
 function cf7lg_add_field_to_panel($panels) {
@@ -292,10 +293,4 @@ function cf7lg_add_field_to_panel($panels) {
 add_filter('wpcf7_editor_panel_custom-panel', 'cf7lg_add_field_to_panel');
 
 // Обратный вызов для поля
-function cf7lg_field_callback($args) {
-?>
-
-<?php
-}
-
-?>
+function cf7lg_field_callback($args) {  } ?>

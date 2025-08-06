@@ -285,5 +285,3 @@ function getLocale(){
 	
 	if($locale == 'uk' || $locale == 'ru'){ return 'uk';}else{return 'en';}
 }
-
-?>

@@ -16,6 +16,4 @@ function repeat_request_form(){
 }
 
 add_action('wp_ajax_repeat_request_form', 'repeat_request_form');
-add_action('wp_ajax_nopriv_repeat_request_form', 'repeat_request_form'); 
-
-?>
+add_action('wp_ajax_nopriv_repeat_request_form', 'repeat_request_form');
