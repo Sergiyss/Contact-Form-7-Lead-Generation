@@ -2,7 +2,7 @@
 /**
  * Принимаю массив данных...
  * */
-function cleateLead($data){
+function createLead($data){
     // Получаем данные из формы
 
     $BASE_URL = "https://api.ifteam2.staj.bid/";

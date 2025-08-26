@@ -184,7 +184,7 @@ function send_mail_callback() {
 			    $data['utm_term'] = $params['utm_term_cf7lg'];
 			}
 
-        	cleateLead($data);
+        	createLead($data);
 
             $response = array(
                 'status'    => 'success',
