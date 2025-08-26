@@ -34,8 +34,8 @@
 
 
 <div style="display: flex; gap: 10px;">
-    <img src="assets/img-1" width="400"/>
-    <img src="assets/img-2" width="400"/>
+    <img src="assets/img-1.jpg" width="400"/>
+    <img src="assets/img-2.jpg" width="400"/>
 </div>
 
 ## Підтримка UTM-міток
