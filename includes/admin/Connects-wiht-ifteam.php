@@ -87,7 +87,8 @@ function leadsParticipants_($page) {
 //Список сервисов
 function leadsServices(){
 	global $BASE_URL;
-	$args = array(
+    $page = 1;
+    $args = array(
 		'timeout'     => 45,
 		'redirection' => 5,
 		'httpversion' => '1.0',
@@ -117,7 +118,8 @@ function leadsServices(){
 //Список валют
 function leadsСurrencies(){
 	global $BASE_URL;
-	$args = array(
+    $page = 1;
+    $args = array(
 		'timeout'     => 45,
 		'redirection' => 5,
 		'httpversion' => '1.0',

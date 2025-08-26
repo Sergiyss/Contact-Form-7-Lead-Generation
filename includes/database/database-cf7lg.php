@@ -76,20 +76,23 @@ class DataBaseCf7lg{
 			$wpdb->insert($table_name, $history_data);
 		}
 	}
-	
-	
-	function get_data_by_wpcf7_id($wpcf7_id){
-		global $wpdb;
 
-		$table_name = $this->getNameTable($wpdb);
 
-		// Получаем данные из таблицы по заданному wpcf7_id
-		$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE wpcf7_id = %s", $wpcf7_id), ARRAY_A);
-		
-		$data_array = json_decode($result["attribytes_cf7lg"], true);
+    function get_data_by_wpcf7_id($wpcf7_id){
+        global $wpdb;
 
-		// Выводим данные
-		return $data_array;
-		
-	}
+        $table_name = $this->getNameTable($wpdb);
+
+        $result = $wpdb->get_row(
+            $wpdb->prepare("SELECT * FROM $table_name WHERE wpcf7_id = %s", $wpcf7_id),
+            ARRAY_A
+        );
+
+        if ($result && isset($result["attribytes_cf7lg"])) {
+            $data_array = json_decode($result["attribytes_cf7lg"], true);
+            return $data_array;
+        }
+
+        return [];
+    }
 }

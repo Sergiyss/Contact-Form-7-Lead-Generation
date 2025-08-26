@@ -17,6 +17,34 @@ add_filter('wpcf7_editor_panels', 'cf7lg_add_panel');
 function cf7lg_panel_content($post) {
 	$database = new DataBaseCf7lg();
 	$result = $database->get_data_by_wpcf7_id($_GET['post']);
+
+
+    // Если данных нет, подставляем пустые значения
+    if (!$result || !is_array($result)) {
+        $result = [
+            "title"            => "",
+            "responsible_id"   => "",
+            "participant_ids"  => "",
+            "expected_budget"  => "",
+            "currency_id"      => "",
+            "source"           => "",
+            "status"           => "",
+            "services"         => "",
+            "description_lead" => "",
+            "file"             => "",
+            "name"             => "",
+            "country"          => "",
+            "email"            => "",
+            "phone"            => "",
+            "description"      => "",
+            "utm_tags_checked" => "",
+            "utm_source"       => "",
+            "utm_medium"       => "",
+            "utm_campaign"     => "",
+            "utm_term"         => "",
+            "utm_content"      => ""
+        ];
+    }
 ?>
 
 <!-- Запрашиваю данные с ifteam -->
@@ -274,12 +302,14 @@ function cf7lg_panel_content($post) {
 		</button>
 	</div>
 </div>
-<script>
-window.addEventListener("load", function() {
-	isActiveUtmInputs();
-});
-</script>
 <?php } ?>
+
+    <script>
+        window.addEventListener("load", function() {
+            isActiveUtmInputs();
+        });
+    </script>
+
 <?php
 
 // Добавление поля в раздел

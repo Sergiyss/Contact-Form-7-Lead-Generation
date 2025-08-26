@@ -56,8 +56,12 @@ class DataBaseLogCf7lg{
         global $wpdb;
         $table_name = $this->getNameTableLog($wpdb);
 
-        // Выполняем SQL-запрос для получения всех данных из таблицы с лимитом 50 и сортировкой по дате создания в обратном порядке
         $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY id DESC LIMIT 50", ARRAY_A);
+
+        if ( empty($results) || !is_array($results) ) {
+            return []; // безопасный возврат пустого массива
+        }
+
         return $results;
     }
 
